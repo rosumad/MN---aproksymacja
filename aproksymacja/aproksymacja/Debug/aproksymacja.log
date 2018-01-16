@@ -1,2 +1,4 @@
 ﻿  main.cpp
+d:\studia\programy\mn---aproksymacja\aproksymacja\aproksymacja\main.cpp(74): warning C4244: "argument": konwersja z "double" do "int", możliwa utrata danych
+d:\studia\programy\mn---aproksymacja\aproksymacja\aproksymacja\main.cpp(91): warning C4244: "argument": konwersja z "double" do "int", możliwa utrata danych
   aproksymacja.vcxproj -> D:\Studia\Programy\MN---aproksymacja\aproksymacja\Debug\aproksymacja.exe
