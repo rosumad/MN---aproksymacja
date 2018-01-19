@@ -1,6 +1,8 @@
 #include<math.h>
 #include<iostream>
 #include<vector>
+#include<iomanip>
+#include<fstream>
 using namespace std;
 
 double f(double x) { return sin(2 * x)*sin(x); }
@@ -37,11 +39,11 @@ vector<double> wartosciAproksymowanej(vector<double> wezly)
 	return wartosciAproksymowanej;
 }
 
-double wielomianCzynnikowy(int q, int k)
+double wielomianCzynnikowy(double q, int k)
 {
-	double wynik = 1;
+	double wynik = 1.0;
 	for (int i = 0; i <= k + 1; i++)
-		wynik *= q - i;
+		wynik *= (q - (double)i);
 
 	return wynik;
 }
@@ -50,12 +52,12 @@ double symbolNewtona(int n, int k)
 {
 	double wynik = 1;
 	for (int i = 1; i <= k; i++)
-		wynik = wynik * (n - i + 1) / i;
+		wynik *= (n - i + 1) / i;
 
 	return wynik;
 }
 
-double wielomianGrama(int n, int k, int q) 
+double wielomianGrama(int n, int k, double q) 
 {
 	double wynikSumy = 0.0;
 	for (int s = 0; s <= k; s++)
@@ -83,14 +85,14 @@ vector<double> wartosciAproksymujacej(int m, vector<double> wezly, vector<double
 {
 	vector<double> wartosciAproksymujacej;
 	double wynikSumy;
+	double debug1, debug2;
 	int n = wezly.size() - 1;
 	for (int i = 0; i <= n; i++)
 	{
-		wynikSumy = 0.0;
-		for (int j = 0; j <= m; j++) 
-			wynikSumy += wspolczynnik(n, j, wezly, wartosciAproksymowanej) * wielomianGrama(n, j, wezly[j]);
-	
-		wartosciAproksymowanej.push_back(wynikSumy);
+		for (int j = 0; j <= m; j++)
+			wynikSumy = wspolczynnik(n, j, wezly, wartosciAproksymowanej) * wielomianGrama(n, j, wezly[i]);
+
+		wartosciAproksymujacej.push_back(wynikSumy);
 	}
 	return wartosciAproksymujacej;
 }
@@ -98,18 +100,24 @@ vector<double> wartosciAproksymujacej(int m, vector<double> wezly, vector<double
 int main() 
 {
 	Przedzial przedzial;
-	przedzial.min = -2;
-	przedzial.max = 2;
+	przedzial.min = -8;
+	przedzial.max = 8;
 	vector<double> wezly;
-	wezly = rownoodlegleWezly(50, przedzial);
+	wezly = rownoodlegleWezly(150, przedzial);
 	vector<double> aproksymowana;
 	aproksymowana = wartosciAproksymowanej(wezly);
 	vector<double> aproksymujaca;
-	aproksymujaca = wartosciAproksymujacej(20, wezly, aproksymowana);
+	aproksymujaca = wartosciAproksymujacej(5, wezly, aproksymowana);
 
-	for (int i = 0; i <= 50; i++)
-		cout << wezly[i] << " " << aproksymowana[i] << " " << aproksymujaca[i] << endl;
+	ofstream raportWynikowy;
+	raportWynikowy.open("raport.txt", ios::out | ios::trunc);
+	raportWynikowy << setprecision(10) << fixed;
+	for (int i = 0; i <= wezly.size()-1; i++)
+		raportWynikowy << wezly[i] << " " << aproksymowana[i] << " " << aproksymujaca[i] << endl;
 
+	raportWynikowy.close();
+	cout << "done";
+	int x; cin >> x;
 	return 0;
 }
 

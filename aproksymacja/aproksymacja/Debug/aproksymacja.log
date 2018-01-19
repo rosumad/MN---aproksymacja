@@ -1,4 +1,5 @@
 ﻿  main.cpp
-d:\studia\programy\mn---aproksymacja\aproksymacja\aproksymacja\main.cpp(74): warning C4244: "argument": konwersja z "double" do "int", możliwa utrata danych
-d:\studia\programy\mn---aproksymacja\aproksymacja\aproksymacja\main.cpp(91): warning C4244: "argument": konwersja z "double" do "int", możliwa utrata danych
-  aproksymacja.vcxproj -> D:\Studia\Programy\MN---aproksymacja\aproksymacja\Debug\aproksymacja.exe
+c:\programy\mn---aproksymacja\aproksymacja\aproksymacja\main.cpp(88): warning C4101: "debug2": lokalna zmienna, do której nie istnieje odwołanie
+c:\programy\mn---aproksymacja\aproksymacja\aproksymacja\main.cpp(88): warning C4101: "debug1": lokalna zmienna, do której nie istnieje odwołanie
+c:\programy\mn---aproksymacja\aproksymacja\aproksymacja\main.cpp(115): warning C4018: "<=": niezgodność typu ze znakiem/bez znaku
+  aproksymacja.vcxproj -> C:\Programy\MN---aproksymacja\aproksymacja\Debug\aproksymacja.exe
